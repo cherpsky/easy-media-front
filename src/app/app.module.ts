@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import { StoreModule } from '@ngrx/store';
 import { HttpClientModule } from '@angular/common/http';
 import { reducers, effects } from './store';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,6 +19,7 @@ import { reducers, effects } from './store';
     BrowserModule,
     AppRoutingModule,
     StoreModule.forRoot({ ...reducers }),
+    EffectsModule.forRoot(effects),
   ],
   providers: [],
   bootstrap: [AppComponent],

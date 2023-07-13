@@ -1,3 +1,22 @@
-<p>
-  main-layout works!
-</p>
+<nav>
+  <img *ngIf="!menuOpen" (click)="menuOpen = true" class="menu-icon" src="assets/img/menu-icon.png" alt="menu">
+  <img *ngIf="menuOpen" (click)="menuOpen = false" class="menu-icon-close" src="assets/img/close.png" alt="close">
+  <ng-container *ngIf="(user$ | async) as user">
+    <ul *ngIf="menuOpen" (click)="menuOpen = false">
+      <li><small>{{ user.name }} ({{ user.email }})</small></li>
+      <li><hr></li>
+      <li>
+        <a [routerLink]="['/main/create-post']">Create publication</a>
+      </li>
+      <li>
+        <a [routerLink]="['/main/posts']">Publications</a>
+      </li>
+      <li class="logout" (click)="logout()">
+        <a>Logout</a>
+      </li>
+    </ul>
+  </ng-container>
+</nav>
+<div class="main-container">
+  <router-outlet></router-outlet>
+</div>

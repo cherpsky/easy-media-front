@@ -1,0 +1,27 @@
+.post-container {
+  background-color: rgb(102, 102, 102);
+  border-radius: 20px;
+  border: 1px solid rgb(102, 102, 102);
+  overflow: hidden;
+  margin-bottom: 12px;
+
+  .title {
+    background-color: #58bcdb;
+    font-weight: bold;
+    color: white;
+    padding: 12px 24px;
+  }
+
+  .description {
+    font-weight: lighter;
+    color: white;
+    padding: 24px;
+  }
+
+  .info {
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 24px;
+  }
+}

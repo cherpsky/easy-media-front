@@ -1,3 +1,31 @@
-<p>
-  create-post works!
-</p>
+<h1>Create message</h1>
+<form [formGroup]="postForm" (submit)="onSubmit()">
+  <div class="form-group">
+    <label for="title">Title: </label>
+    <input id="title" type="text" formControlName="title">
+    <div class="errors" *ngIf="postForm.controls.title.touched">
+      <small *ngIf="postForm.controls.title.hasError('required')">The field is required</small>
+      <small *ngIf="postForm.controls.title.hasError('maxlength')">The description can have a max length of 30</small>
+    </div>
+    <small>{{ postForm.controls.title.value?.length || 0 }}/30</small>
+  </div>
+
+  <div class="form-group">
+    <label for="description">Description: </label>
+    <textarea id="description" formControlName="description"></textarea>
+    <div class="errors" *ngIf="postForm.controls.description.touched">
+      <small *ngIf="postForm.controls.description.hasError('required')">The field is required</small>
+      <small *ngIf="postForm.controls.description.hasError('maxlength')">The description can have a max length of 300</small>
+    </div>
+    <small>{{ postForm.controls.description.value?.length || 0 }}/300</small>
+  </div>
+
+  <button class="share-button" type="submit" [disabled]="!postForm.valid">Share</button>
+
+  <app-post-item
+    [title]="postForm.controls.title.value || 'Empty title'"
+    [description]="postForm.controls.description.value || 'Empty description'"
+    [author]="(user$ | async)?.name || 'Loading...'"
+  ></app-post-item>
+
+</form>
